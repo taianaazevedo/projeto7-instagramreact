@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export default function Post() {
     const post = [
         { imgUser: "assets/img/meowed.svg", userName: "meowed", photo: "assets/img/gato-telefone.svg", likedBy: "assets/img/respondeai.svg", text1: "respondeai", text2: "101.523" },
@@ -13,6 +15,17 @@ export default function Post() {
 
 
 function EachPost(props) {
+
+    const [save, setSave] = useState("bookmark-outline");
+
+    function savePost(){
+        if(save === "bookmark-outline"){
+            setSave("bookmark");
+        } else {
+            setSave("bookmark-outline");
+        }
+    }
+
     return (
         <div className="post" data-test="post">
             <div className="topo">
@@ -37,7 +50,7 @@ function EachPost(props) {
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon name="bookmark-outline" data-test="save-post"></ion-icon>
+                        <ion-icon name={save} onClick={savePost} data-test="save-post"></ion-icon>
                     </div>
                 </div>
 
