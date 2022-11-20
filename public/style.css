@@ -180,10 +180,6 @@
     cursor: pointer;
   }
   
-  ion-icon[name="heart"]{
-    color: red;
-  }
-
   .post .conteudo img {
     width: 100%;
   }
