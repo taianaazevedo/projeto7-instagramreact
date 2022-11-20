@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+
 
 export default function Usuario() {
     const [nome, setNome] = useState("Catana");

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+
 
 export default function Post() {
     const post = [
@@ -17,12 +18,23 @@ export default function Post() {
 function EachPost(props) {
 
     const [save, setSave] = useState("bookmark-outline");
-
+    const [liked, setLiked] = useState("heart-outline");
+    const [colorLike, setColorLike] = useState("");
+/* função que marca ou desmarca como salvo */
     function savePost(){
         if(save === "bookmark-outline"){
             setSave("bookmark");
         } else {
             setSave("bookmark-outline");
+        }
+    }
+/* função que dá like ou tira o like do post*/
+    function likePost(){
+        if(liked === "heart-outline"){
+            setLiked("heart");
+            setColorLike("red");
+        } else {
+            setLiked("heart-outline");
         }
     }
 
@@ -45,7 +57,7 @@ function EachPost(props) {
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon name="heart-outline" data-test="like-post"></ion-icon>
+                        <ion-icon name={liked} style={{ color: {colorLike} }} onClick={likePost} data-test="like-post"></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
