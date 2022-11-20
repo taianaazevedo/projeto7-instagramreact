@@ -21,6 +21,7 @@ function EachPost(props) {
     const [liked, setLiked] = useState("heart-outline");
     const [color, setColor] = useState("");
     const [countLikes, setCountLikes] = useState(props.text2);
+    const [likeHeart, setLikeHeart] = useState("");
 
     /* função que marca ou desmarca como salvo */
     function savePost() {
@@ -31,7 +32,7 @@ function EachPost(props) {
         }
     }
 
-    
+
     /* função que dá like ou tira o like do post e soma ou subtrai o like*/
     function likePost() {
         if (liked === "heart-outline") {
@@ -43,16 +44,18 @@ function EachPost(props) {
             setColor("");
             setCountLikes(countLikes - 1);
         }
-        
+
     }
 
-  
+
     /* função que dá like clicando 2x na foto */
     function doubleClick(event) {
-        if (event.detail === 2) {
+        if (event.detail === 2 && liked !== "heart") {
             setLiked("heart");
             setColor("red");
             setCountLikes(countLikes + 1);
+            setLikeHeart(<ion-icon name="heart"></ion-icon>)
+            return;
         }
     };
 
@@ -70,13 +73,16 @@ function EachPost(props) {
             </div>
 
             <div className="conteudo">
-                <img src={props.photo} onClick={doubleClick} data-test="post-image" />
+                <div className="foto-principal">
+                    {likeHeart}
+                    <img src={props.photo} onClick={doubleClick} data-test="post-image" />
+                </div>
             </div>
 
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon name={liked} style={{color: color }} onClick={likePost} data-test="like-post"></ion-icon>
+                        <ion-icon name={liked} style={{ color: color }} onClick={likePost} data-test="like-post"></ion-icon>
                         <ion-icon name="chatbubble-outline"></ion-icon>
                         <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
